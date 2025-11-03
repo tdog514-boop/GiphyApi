@@ -7,3 +7,16 @@ const apiKey = "hqsdJh6cVQX1jOnm9IxE4I1fYeqLUNDv";
 const gifContainer = document.querySelector("#gif-container");
 const fetchButton = document.querySelector("#fetch-gif-btn");
 const searchInput = document.querySelector("#search-input");
+
+const images = [];
+
+fetchButton.addEventListener("click", async function () {
+  const searchTerm = searchInput.value.trim() || "funny"; // default if empty
+  const url = `https://api.giphy.com/v1/gifs/random?api_key=${apiKey}&tag=${searchTerm}&rating=g`;
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    const imageUrl = data.data.images.original.url;
+
+    images.push(imageUrl);
