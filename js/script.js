@@ -20,3 +20,15 @@ fetchButton.addEventListener("click", async function () {
     const imageUrl = data.data.images.original.url;
 
     images.push(imageUrl);
+
+    gifContainer.innerHTML = "";
+    for (let url of images) {
+      gifContainer.innerHTML += `<img src="${url}" class="col-3 mb-3">`;
+    }
+
+    console.log("Fetched image URL:", imageUrl);
+    console.log("All images:", images);
+  } catch (error) {
+    console.error("Error fetching GIF:", error);
+  }
+});
